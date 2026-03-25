@@ -1,5 +1,5 @@
 import { circle } from "./circle.js"
-import {cube} from "./cube.js"
+import { cube } from "./cube.js"
 
 const BACKGROUND = "black"
 const COLOR_PRINT = "#019b01"
@@ -39,25 +39,43 @@ function project({ x, y, z }) {
     }
 }
 
+
+
 function translate_z({ x, y, z }, dz) {
     return { x, y, z: z + dz }
+}
+
+function rotate_xz({ x, y, z }, angle) {
+    return {
+        x: x * Math.cos(angle) - z * Math.sin(angle),
+        y,
+        z: x * Math.sin(angle) + z * Math.cos(angle)
+    }
 }
 
 
 const FPS = 60
 let dz = 1
+let angle = 0
 
 function frame() {
     const dt = 1 / FPS
-    dz += 1 * dt
-    clear()
+    // dz += 0.5 * dt
+    angle +=  Math.PI * dt,
+        clear()
     for (const v of cube) {
-        printRect({ ...screen(project(translate_z(v, dz))), s: 10 })
+        printRect({ ...screen(project(translate_z(rotate_xz(v, angle), dz))), s: 10 })
     }
-    for (const v of circle) {
-        printRect({ ...screen(project(v)), s: 7 })
-    }
+    // for (const v of circle) {
+    //     printRect({ ...screen(project(translate_z(rotate_xz(v,angle),dz))), s: 7 })
+    // }
     setTimeout(frame, 1000 / FPS);
 }
 
 setTimeout(frame, 1000 / FPS);
+
+
+        clear()
+    for (const v of cube) {
+        printRect({ ...screen(project(translate_z(rotate_xz(v, angle), dz))), s: 10 })
+    }
