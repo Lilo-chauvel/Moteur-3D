@@ -1,7 +1,7 @@
 # Moteur 3D
 Code JavaScript pour afficher des choses en 3D sur une interface simple.
 
-Lien vers la vidéo pour refaire le code :
+Lien vers la vidéo pour refaire la base code :
 https://www.youtube.com/watch?v=qjWkNZ0SXfo&list=PLjf812dyQYGXp_3J0x4pZiB-n8ruF_rTR
 
 Temps vidéo : 11:44
