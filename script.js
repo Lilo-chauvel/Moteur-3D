@@ -61,6 +61,13 @@ breakBtn.addEventListener("click", () => {
     isPaused = !isPaused
 })
 
+// Geting Back Management
+const reverseBtn = document.getElementById("reverse")
+let isReverse = false
+
+reverseBtn.addEventListener("click", () => {
+    isReverse = !isReverse
+})
 
 
 
