@@ -60,11 +60,11 @@ let angle = 0
 
 function frame() {
     const dt = 1 / FPS
-    // dz += 0.5 * dt
+    dz += 0.5 * dt
     angle +=  Math.PI * dt,
         clear()
     for (const v of cube) {
-        printRect({ ...screen(project(translate_z(rotate_xz(v, angle), dz))), s: 10 })
+        printRect({ ...screen(project(translate_z(rotate_xz(v, angle), dz))), s: 5 })
     }
     // for (const v of circle) {
     //     printRect({ ...screen(project(translate_z(rotate_xz(v,angle),dz))), s: 7 })
