@@ -6,31 +6,15 @@ import { isPaused } from "./buttonManager/break.js"
 import { reverse } from "./buttonManager/reverse.js"
 import { speed } from "./buttonManager/speed.js"
 //Data
-import { circle } from "./Data/circle.js"
-import { cube } from "./Data/cube.js"
+import { circle } from "./data/circle.js"
+import { cube } from "./data/cube.js"
+import { sun } from "./data/sun.js"
 
 // Frame Management
 const FPS = 60
 const dt = 1 / FPS
-let dz = 1
+let dz = 0.75
 let angle = 0
-
-function frame() {
-    if (!isPaused) {
-        dz += reverse * 0.5 * dt * speed
-        angle += Math.PI * dt * speed,
-            print.clear()
-        for (const v of cube) {
-            print.printRect({ ...print.screen(print.project(move.translate_z(move.rotate_xz(v, angle), dz))), s: 7 })
-        }
-        // for (const v of circle) {
-        //     printRect({ ...screen(project(translate_z(rotate_xz(v,angle),dz))), s: 15 })
-        // }
-        setTimeout(frame, 1000 / FPS);
-    } else {
-        setTimeout(frame, 1000 / FPS);
-    }
-}
 
 // Main
 // setTimeout(frame, 1000 / FPS);
@@ -38,11 +22,11 @@ function frame() {
 function frameV2(p) {
     if (!isPaused) {
         // dz += reverse * 0.5 * dt * speed
-        angle += Math.PI * dt * speed,
+        // angle += reverse * Math.PI * dt * speed,
             print.clear()
         p.forEach(forme => {
             for (const v of forme) {
-            print.printRect({ ...print.screen(print.project(move.translate_z(move.rotate_xz(v, angle), dz))), s: 7 })
+            print.printRect({ ...print.screen(print.project(move.translate_z(move.rotate_xz(move.rotate_xy(v,0.25*Math.PI), angle), dz))), s: 10 })
             }
         });
         setTimeout(frameV2, 1000 / FPS, p);
@@ -51,5 +35,4 @@ function frameV2(p) {
     }
 }
 
-console.log(circle)
 setTimeout(frameV2([circle]), 1000 / FPS);
