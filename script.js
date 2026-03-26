@@ -70,6 +70,18 @@ reverseBtn.addEventListener("click", () => {
 })
 
 
+// Geting Fast Management
+const fastBtn = document.getElementById("fast")
+const slowBtn = document.getElementById("slow")
+let fast = 1
+
+fastBtn.addEventListener("click", () => {
+    fast *= 1.5
+})
+
+slow.addEventListener("click", ()=>{
+    fast /= 1.5
+})
 
 
 // Frame Management
