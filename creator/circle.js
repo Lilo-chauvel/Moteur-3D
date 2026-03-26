@@ -4,15 +4,35 @@ import * as move from "../3DManager/3D_movement.js"
 const PI = Math.PI
 const NB_ANGLES = 500
 
-function circleCreator(centerPoint, radius, numberLigne = 4) {
-    let boardPoint = []
-    for (let i = 0; i < PI; i += PI / numberLigne) {
-        boardPoint.push(...Array.from({ length: NB_ANGLES }, (_, k) => {
-            const p = pointOnCircle_xy((2 * PI * k) / NB_ANGLES, radius)
-            return move.rotate_xz(p, i * PI)
-        }))
-        }
-    return boardPoint
+function circleCreator(centerPoint, radius, lastAxe, numberLigne = 4) {
+    switch (lastAxe) {
+        case 'z':
+            for (let i = 0; i < PI; i += PI / numberLigne) {
+                boardPoint.push(...Array.from({ length: NB_ANGLES }, (_, k) => {
+                    const p = pointOnCircle_xy((2 * PI * k) / NB_ANGLES, radius)
+                    return move.rotate_xz(p, i)
+                }))
+            }
+            return boardPoint
+
+        case 'x':
+            for (let i = 0; i < PI; i += PI / numberLigne) {
+                boardPoint.push(...Array.from({ length: NB_ANGLES }, (_, k) => {
+                    const p = pointOnCircle_yz((2 * PI * k) / NB_ANGLES, radius)
+                    return move.rotate_xz(p, i)
+                }))
+            }
+            return boardPoint
+        default:
+            for (let i = 0; i < PI; i += PI / numberLigne) {
+                boardPoint.push(...Array.from({ length: NB_ANGLES }, (_, k) => {
+                    const p = pointOnCircle_zx((2 * PI * k) / NB_ANGLES, radius)
+                    return move.rotate_xy(p, i)
+                }))
+            }
+            return boardPoint
+    }
+
 }
 
 
@@ -38,4 +58,4 @@ function pointOnCircle_zx(angleRad, radius, y = 0) {
     }
 }
 
-export{circleCreator}
+export { circleCreator }

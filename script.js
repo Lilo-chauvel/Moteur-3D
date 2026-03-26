@@ -15,7 +15,7 @@ import * as creator from "./creator/circle.js"
 // Frame Management
 const FPS = 60
 const dt = 1 / FPS
-let dz = 0.75
+let dz = 0.4
 let angle = 0
 
 // Main
@@ -28,7 +28,7 @@ function frameV2(p) {
             print.clear()
         p.forEach(forme => {
             for (const v of forme) {
-                print.printRect({ ...print.screen(print.project(move.translate_z(move.rotate_xz(move.rotate_xy(v,angle/2), angle), dz))), s: 1 })
+                print.printRect({ ...print.screen(print.project(move.translate_z(move.rotate_xy(move.rotate_yz(v,angle/2), angle), dz))), s: 1 })
             }
         });
         setTimeout(frameV2, 1000 / FPS, p);
@@ -37,7 +37,7 @@ function frameV2(p) {
     }
 }
 
-let circle2 = creator.circleCreator(0,0.25,8)
+let circle2 = creator.circleCreator(0,0.25,'x',10)
 console.log(circle==circle2)
 console.log("Circle")
 console.log(circle)
