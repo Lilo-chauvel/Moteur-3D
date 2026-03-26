@@ -66,10 +66,10 @@ breakBtn.addEventListener("click", () => {
 
 // Geting Back Management
 const reverseBtn = document.getElementById("reverse")
-let isReverse = false
+let reverse = 1
 
 reverseBtn.addEventListener("click", () => {
-    isReverse = !isReverse
+    reverse -= 2 * reverse
 })
 
 
@@ -95,11 +95,7 @@ let angle = 0
 
 function frame() {
     if (!isPaused) {
-        if (isReverse) {
-            dz += - 0.5 * dt * fast
-        } else {
-            dz += 0.5 * dt * fast
-        }
+        dz += reverse * 0.5 * dt * fast
         angle += Math.PI * dt * fast,
             clear()
         for (const v of cube) {
