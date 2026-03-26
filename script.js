@@ -22,11 +22,11 @@ let angle = 0
 function frameV2(p) {
     if (!isPaused) {
         // dz += reverse * 0.5 * dt * speed
-        // angle += reverse * Math.PI * dt * speed,
+        angle += reverse * Math.PI * dt * speed,
             print.clear()
         p.forEach(forme => {
             for (const v of forme) {
-            print.printRect({ ...print.screen(print.project(move.translate_z(move.rotate_xz(move.rotate_xy(v,0.25*Math.PI), angle), dz))), s: 10 })
+                print.printRect({ ...print.screen(print.project(move.translate_z(move.rotate_xz(move.rotate_xy(v,angle/2), angle), dz))), s: 1 })
             }
         });
         setTimeout(frameV2, 1000 / FPS, p);
@@ -35,4 +35,4 @@ function frameV2(p) {
     }
 }
 
-setTimeout(frameV2([circle]), 1000 / FPS);
+setTimeout(() => frameV2([circle]), 1000 / FPS);

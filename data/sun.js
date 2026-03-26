@@ -14,7 +14,7 @@ function pointOnCircle_yz(angleRad, radius = r, x = 0) {
 }
 
 const r = 0.25
-const pie = Math.PI
+const PI = Math.PI
 
 const NB_ANGLES = 24
 const RAYON_DEBUT = 0.15
@@ -26,7 +26,7 @@ function buildCirclesBetween(pointBuilder, radiusStart, radiusEnd, intermediateC
     return Array.from({ length: totalCircles }, (_, i) => {
         const t = i / (totalCircles - 1)
         const radius = radiusStart + (radiusEnd - radiusStart) * t
-        return Array.from({ length: nbAngles }, (_, k) => pointBuilder((2 * pie * k) / nbAngles, radius))
+        return Array.from({ length: nbAngles }, (_, k) => pointBuilder((2 * PI * k) / nbAngles, radius))
     }).flat()
 }
 

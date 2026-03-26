@@ -1,6 +1,6 @@
 // Default value
 const BACKGROUND = "black"
-const COLOR_PRINT = "#019b01"
+const COLOR_PRINT = "#00ccff"
 const GAME_CUBE_SIZE = 800
 
 game.width = GAME_CUBE_SIZE

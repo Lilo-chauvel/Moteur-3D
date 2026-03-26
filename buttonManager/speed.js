@@ -7,7 +7,7 @@ speedBtn.addEventListener("click", () => {
     speed *= 1.5
 })
 
-slow.addEventListener("click", () => {
+slowBtn.addEventListener("click", () => {
     speed /= 1.5
 })
 
