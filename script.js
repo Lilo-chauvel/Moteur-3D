@@ -2,9 +2,9 @@
 import * as print from "./3DManager/print_on_screen.js"
 import * as move from "./3DManager/3D_movement.js"
 //Controle
-import { isPaused } from "./buttonManager/break.js"
-import { reverse } from "./buttonManager/reverse.js"
-import { speed } from "./buttonManager/speed.js"
+import { isPaused } from "./controlManager/break.js"
+import { reverse } from "./controlManager/reverse.js"
+import { speed } from "./controlManager/speed.js"
 //Data
 import { circle } from "./data/circle.js"
 import { cube } from "./data/cube.js"

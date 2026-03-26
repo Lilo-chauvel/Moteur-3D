@@ -6,4 +6,10 @@ reverseBtn.addEventListener("click", () => {
     reverse -= 2 * reverse
 })
 
-export {reverse}
+document.addEventListener("keydown", (event) => {
+    if (event.key === "r" || event.key === "R") {
+        reverse -= 2 * reverse
+    }
+})
+
+export { reverse }
