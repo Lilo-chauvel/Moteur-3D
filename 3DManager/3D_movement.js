@@ -10,4 +10,12 @@ function rotate_xz({ x, y, z }, angle) {
     }
 }
 
-export {rotate_xz, translate_z}
+function rotate_xy({ x, y, z }, angle) {
+    return {
+        x: x * Math.cos(angle) - y * Math.sin(angle),
+        y: x * Math.sin(angle) + y * Math.cos(angle),
+        z
+    }
+}
+
+export { rotate_xz, translate_z, rotate_xy}
