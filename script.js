@@ -1,10 +1,10 @@
-import { circle } from "./circle.js"
-import { cube } from "./cube.js"
-import { clear, printRect, screen, project } from "./print_on_screen.js"
-import { rotate_xz, translate_z } from "./3D_movement.js"
-import { isPaused } from "./break.js"
-import { reverse } from "./reverse.js"
-import { speed } from "./speed.js"
+import { circle } from "./Data/circle.js"
+import { cube } from "./Data/cube.js"
+import { clear, printRect, screen, project } from "./3DManager/print_on_screen.js"
+import { rotate_xz, translate_z } from "./3DManager/3D_movement.js"
+import { isPaused } from "./buttonManager/break.js"
+import { reverse } from "./buttonManager/reverse.js"
+import { speed } from "./buttonManager/speed.js"
 
 // Frame Management
 const FPS = 60
