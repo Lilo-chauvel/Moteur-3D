@@ -59,6 +59,9 @@ let isPaused = false
 
 breakBtn.addEventListener("click", () => {
     isPaused = !isPaused
+    if (!isPaused) {
+        setTimeout(frame, 1000 / FPS);
+    }
 })
 
 // Geting Back Management
@@ -79,7 +82,7 @@ fastBtn.addEventListener("click", () => {
     fast *= 1.5
 })
 
-slow.addEventListener("click", ()=>{
+slow.addEventListener("click", () => {
     fast /= 1.5
 })
 
@@ -91,9 +94,7 @@ let dz = 0
 let angle = 0
 
 function frame() {
-    if (isPaused) {
-        setTimeout(frame, 1000 / FPS);
-    } else {
+    if (!isPaused) {
         if (isReverse) {
             dz += - 0.5 * dt * fast
         } else {
@@ -108,10 +109,8 @@ function frame() {
         //     printRect({ ...screen(project(translate_z(rotate_xz(v,angle),dz))), s: 15 })
         // }
         setTimeout(frame, 1000 / FPS);
-
     }
 }
-
 
 // Main
 setTimeout(frame, 1000 / FPS);
