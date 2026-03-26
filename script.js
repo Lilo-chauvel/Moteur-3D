@@ -9,6 +9,8 @@ import { speed } from "./buttonManager/speed.js"
 import { circle } from "./data/circle.js"
 import { cube } from "./data/cube.js"
 import { sun } from "./data/sun.js"
+//Creator
+import * as creator from "./creator/circle.js"
 
 // Frame Management
 const FPS = 60
@@ -35,4 +37,11 @@ function frameV2(p) {
     }
 }
 
-setTimeout(() => frameV2([circle]), 1000 / FPS);
+let circle2 = creator.circleCreator(0,0.25,8)
+console.log(circle==circle2)
+console.log("Circle")
+console.log(circle)
+console.log("Circle 2")
+console.log(circle2)
+
+setTimeout(() => frameV2([circle2]), 1000 / FPS);

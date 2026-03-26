@@ -1,3 +1,0 @@
-function circleCreate(centerPoint,){
-
-}
