@@ -1,6 +1,6 @@
 // Default value
 const BACKGROUND = "black"
-const COLOR_PRINT = "#ff4400"
+const COLOR_PRINT = "#008000"
 const GAME_CUBE_SIZE = 800
 
 game.width = GAME_CUBE_SIZE
@@ -26,6 +26,7 @@ function point({ x, y, s = 20, color = COLOR_PRINT }) {
 }
 function line(a, b, s = 1) {
     ctx.strokeStyle = COLOR_PRINT
+    ctx.lineWidth = s
     ctx.beginPath()
     ctx.moveTo(a.x, a.y)
     ctx.lineTo(b.x, b.y)

@@ -55,8 +55,8 @@ function frameV2(p) {
                 let nextV2D = { ...print.screen(print.project(vNextMove)), s: 4 }
 
                 // Print point and line from point to next point
-                print.point(v2D);
-                print.line(v2D, nextV2D)
+                // print.point(v2D);
+                print.line(v2D, nextV2D, 3)
             }
         });
         setTimeout(frameV2, 1000 / FPS, p);
@@ -71,4 +71,4 @@ let circle2 = creator.circleCreator(0, r2, 'x', 4)
 let circle3 = creator.circleCreator(0, r2 * 2, 'x', 4)
 
 // Start
-setTimeout(() => frameV2([circle2]), 1000 / FPS);
+setTimeout(() => frameV2([cube]), 1000 / FPS);
