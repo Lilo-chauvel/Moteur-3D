@@ -17,13 +17,14 @@ import * as creator from "./creator/circle.js"
 
 // Frame Management
 const FPS = 60
-const dt = 1 / FPS
+const BASE_ROTATION_SPEED = 0.5 * Math.PI
 let dz = 1
 let dx = 1
-let dy = 1
+let dy = 0.75
 let angle = 0
+let lastFrameTime = 0
 
-function frameV2(p) {
+function frameV2(p, deltaTime) {
     if (!isPaused) {
         // Distance on axeZ on each frame
         // dz += reverse * 0.5 * dt * speed
@@ -31,7 +32,7 @@ function frameV2(p) {
         // dy += reverse * 0.5 * dt * speed
 
         // Rotate angle for each frame
-        angle += reverse * 0.5 * Math.PI * dt * speed
+        angle += reverse * BASE_ROTATION_SPEED * deltaTime * speed
 
         // Print the black background
         print.clear()
@@ -47,21 +48,18 @@ function frameV2(p) {
                 // vMove = move.translate_z(vMove,dz*position.axeZ)
                 vMove = move.translate_x(vMove, position.axeX)
                 vMove = move.translate_y(vMove, position.axeY)
-                // vNextMove = move.translate_x(vNextMove, position.axeX)
-                // vNextMove = move.translate_y(vNextMove, position.axeY)
+                vNextMove = move.translate_x(vNextMove, position.axeX)
+                vNextMove = move.translate_y(vNextMove, position.axeY)
 
                 // Get point for print
                 let v2D = { ...print.screen(print.project(vMove)), s: 4 }
                 let nextV2D = { ...print.screen(print.project(vNextMove)), s: 4 }
 
                 // Print point and line from point to next point
-                // print.point(v2D);
-                print.line(v2D, nextV2D, 3)
+                print.point(v2D);
+                // print.line(v2D, nextV2D, 3)
             }
         });
-        setTimeout(frameV2, 1000 / FPS, p);
-    } else {
-        setTimeout(frameV2, 1000 / FPS, p);
     }
 }
 
@@ -71,4 +69,38 @@ let circle2 = creator.circleCreator(0, r2, 'x', 4)
 let circle3 = creator.circleCreator(0, r2 * 2, 'x', 4)
 
 // Start
-setTimeout(() => frameV2([cube]), 1000 / FPS);
+// setTimeout(() => frameV2([cube]), 1000 / FPS);
+
+const shapeSelect = document.getElementById("shapeSelect")
+const shapes = {
+    cube,
+    circle,
+    sun,
+    krokmou,
+    star
+}
+
+const scene = [cube]
+
+if (shapeSelect) {
+    shapeSelect.addEventListener("change", (event) => {
+        const selectedShape = shapes[event.target.value]
+        if (selectedShape) {
+            scene[0] = selectedShape
+        }
+    })
+}
+
+function loop(time) {
+    if (lastFrameTime === 0) {
+        lastFrameTime = time
+    }
+
+    const deltaTime = (time - lastFrameTime) / 1000
+    lastFrameTime = time
+
+    frameV2(scene, deltaTime)
+    requestAnimationFrame(loop)
+}
+
+requestAnimationFrame(loop)
