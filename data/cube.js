@@ -10,4 +10,6 @@ const cube = [
     { x: -0.125, y: -0.125, z: -0.125 },
 ]
 
+console.log(cube[0].z)
+
 export {cube}

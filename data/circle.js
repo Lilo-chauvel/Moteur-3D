@@ -26,7 +26,7 @@ const r = 0.25
 const r2 = r/2
 const PI = Math.PI
 
-const NB_ANGLES = 500
+const NB_ANGLES = 100
 
 const circle = [
     ...Array.from({ length: NB_ANGLES }, (_, k) => {

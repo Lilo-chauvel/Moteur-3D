@@ -2,9 +2,10 @@ import * as move from "../3DManager/3D_movement.js"
 
 
 const PI = Math.PI
-const NB_ANGLES = 500
+const NB_ANGLES = 30
 
 function circleCreator(centerPoint, radius, lastAxe, numberLigne = 4) {
+    let boardPoint = []
     switch (lastAxe) {
         case 'z':
             for (let i = 0; i < PI; i += PI / numberLigne) {
