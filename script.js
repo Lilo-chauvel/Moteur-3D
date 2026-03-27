@@ -5,12 +5,12 @@ import * as move from "./3DManager/3D_movement.js"
 import { isPaused } from "./controlManager/break.js"
 import { reverse } from "./controlManager/reverse.js"
 import { speed } from "./controlManager/speed.js"
+import { axeY } from "./controlManager/position.js"
 //Data
 import { circle } from "./data/circle.js"
 import { cube } from "./data/cube.js"
 import { sun } from "./data/sun.js"
 import {krokmou} from "./data/krokmou.js"
-import {krokmouAI} from "./data/krokmouAI.js"
 import {star} from "./data/star.js"
 //Creator
 import * as creator from "./creator/circle.js"
@@ -38,7 +38,7 @@ function frameV2(p) {
             // print.line(v2D, nextV2D)
         }
         });
-        
+        // console.log(axeY)
         setTimeout(frameV2, 1000 / FPS, p);
     } else {
         setTimeout(frameV2, 1000 / FPS, p);
@@ -49,4 +49,4 @@ let r2 = 0.25
 let circle2 = creator.circleCreator(0, r2, 'x', 4)
 let circle3 = creator.circleCreator(0, r2*2, 'x', 4)
 
-setTimeout(() => frameV2([krokmouAI]), 1000 / FPS);
+setTimeout(() => frameV2([cube]), 1000 / FPS);
