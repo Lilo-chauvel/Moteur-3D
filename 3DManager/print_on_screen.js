@@ -1,6 +1,6 @@
 // Default value
 const BACKGROUND = "black"
-const COLOR_PRINT = "#00ccff"
+const COLOR_PRINT = "#ff4400"
 const GAME_CUBE_SIZE = 800
 
 game.width = GAME_CUBE_SIZE
@@ -16,12 +16,20 @@ function clear() {
     ctx.fillRect(0, 0, game.width, game.height)
 }
 
-function printRect({ x, y, s = 20, color = COLOR_PRINT }) {
+// Printer
+function point({ x, y, s = 20, color = COLOR_PRINT }) {
     if (s < 0) {
         s = 0
     }
     ctx.fillStyle = color
     ctx.fillRect(x - (s / 2), y - (s / 2), s, s)
+}
+function line(a, b, s = 1) {
+    ctx.strokeStyle = COLOR_PRINT
+    ctx.beginPath()
+    ctx.moveTo(a.x, a.y)
+    ctx.lineTo(b.x, b.y)
+    ctx.stroke();
 }
 
 function screen(p) {
@@ -38,4 +46,5 @@ function project({ x, y, z }) {
     }
 }
 
-export {clear,printRect,screen,project}
+
+export { clear, point, line, screen, project }

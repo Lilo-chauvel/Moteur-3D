@@ -9,13 +9,16 @@ import { speed } from "./controlManager/speed.js"
 import { circle } from "./data/circle.js"
 import { cube } from "./data/cube.js"
 import { sun } from "./data/sun.js"
+import {krokmou} from "./data/krokmou.js"
+import {krokmouAI} from "./data/krokmouAI.js"
+import {star} from "./data/star.js"
 //Creator
 import * as creator from "./creator/circle.js"
 
 // Frame Management
 const FPS = 60
 const dt = 1 / FPS
-let dz = 0.4
+let dz = 5
 let angle = 0
 
 // Main
@@ -23,14 +26,19 @@ let angle = 0
 
 function frameV2(p) {
     if (!isPaused) {
-        dz += reverse * 0.5 * dt * speed
-        angle += Math.PI * dt * speed,
+        // dz += reverse * 0.5 * dt * speed
+        angle += reverse *0.5 * Math.PI * dt * speed,
             print.clear()
         p.forEach(forme => {
-            for (const v of forme) {
-                print.printRect({ ...print.screen(print.project(move.translate_z(move.rotate_yz(v,angle), dz))), s: 4 })
-            }
+            for (const [i, v] of forme.entries()) {
+            let v2D = { ...print.screen(print.project(move.translate_z(move.rotate_xz(move.rotate_xy(v,angle), angle), dz))), s: 4 }
+            let nextV2D = {...print.screen(print.project(move.translate_z(move.rotate_xz(move.rotate_xy(forme[(i+1)% forme.length],angle), angle), dz))), s: 4 }
+            
+            print.point(v2D);
+            // print.line(v2D, nextV2D)
+        }
         });
+        
         setTimeout(frameV2, 1000 / FPS, p);
     } else {
         setTimeout(frameV2, 1000 / FPS, p);
@@ -38,11 +46,7 @@ function frameV2(p) {
 }
 
 let r2 = 0.25
-let circle2 = creator.circleCreator(0,r2,'x',15)
-console.log(circle==circle2)
-console.log("Circle")
-console.log(circle)
-console.log("Circle 2")
-console.log(circle2)
+let circle2 = creator.circleCreator(0, r2, 'x', 4)
+let circle3 = creator.circleCreator(0, r2*2, 'x', 4)
 
-setTimeout(() => frameV2([circle2]), 1000 / FPS);
+setTimeout(() => frameV2([krokmouAI]), 1000 / FPS);
